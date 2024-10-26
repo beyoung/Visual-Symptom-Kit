@@ -108,7 +108,7 @@ struct ContentView: View {
                                         .background(Color(.green))
                                         .clipShape(Circle())
                                     
-                                    Text("120/80")
+                                    Text("130/90")
                                         .font(.largeTitle)
                                         .fontWeight(.medium)
                                 }
@@ -121,7 +121,7 @@ struct ContentView: View {
                                         .clipShape(Circle())
                                     
                                     HStack (alignment: .bottom) {
-                                        Text("82")
+                                        Text("85")
                                             .font(.largeTitle)
                                             .fontWeight(.medium)
                                         Text("BPM")
@@ -508,7 +508,12 @@ struct ContentView: View {
             }
             
         }
+        .enableInjection()
     }
+
+    #if DEBUG
+    @ObserveInjection var forceRedraw
+    #endif
     func loadBodyPartsData() {
         if let url = Bundle.main.url(forResource: "BodyParts", withExtension: "json") {
             do {
@@ -563,7 +568,12 @@ struct BodyItem: View {
                 .tint(Color("bg.tertiary")).opacity(0.6)
         }
         .background()
+        .enableInjection()
     }
+
+    #if DEBUG
+    @ObserveInjection var forceRedraw
+    #endif
 }
 
 struct ToastView: View {
@@ -584,5 +594,10 @@ struct ToastView: View {
                 .shadow(color:.black.opacity(0.1), radius: 16)
             Spacer()
         }
+        .enableInjection()
     }
+
+    #if DEBUG
+    @ObserveInjection var forceRedraw
+    #endif
 }

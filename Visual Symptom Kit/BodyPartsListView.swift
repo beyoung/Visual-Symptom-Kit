@@ -25,7 +25,12 @@ struct BodyPartsListView: View {
                     handleZoomState(for: part)
                 }
         }
+        .enableInjection()
     }
+
+    #if DEBUG
+    @ObserveInjection var forceRedraw
+    #endif
 
     private func handleZoomState(for part: String) {
         if part == "Chest" {
